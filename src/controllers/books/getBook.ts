@@ -1,4 +1,4 @@
-const getBook = () =>  {
+const getBook = () => {
    
 };
 
