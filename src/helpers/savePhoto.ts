@@ -6,12 +6,12 @@ import { promises as fs } from 'fs';
 import { throwError } from './errorHandler';
 
 
-const savePhoto = async (photo, width) => {
+const savePhoto = async (photo) => {
   const { UPLOADS_DIR } = process.env;
   let uploadsPath: string;
 
   if (UPLOADS_DIR) {
-    uploadsPath = path.resolve(__dirname, '../', UPLOADS_DIR);
+    uploadsPath = path.resolve(__dirname, '../', UPLOADS_DIR);  
 
     try {
       await fs.access(uploadsPath);
@@ -19,18 +19,18 @@ const savePhoto = async (photo, width) => {
       await fs.mkdir(uploadsPath);
     }
 
-    try {
-      const img: sharp.Sharp = sharp(photo.data);
-      img.resize(width);
+    try {   
+      const img = sharp(photo.buffer);         
       
-      const imgName: string = randomstring.generate(15) + path.extname(photo.name);
+      const imgName: string = randomstring.generate(15) + path.extname(photo.originalname);
       
-      const imgPath: string = path.join(uploadsPath, imgName);
+      const imgPath: string = path.join(uploadsPath, imgName);        
 
       await img.toFile(imgPath);
 
       return imgName;
     } catch (err) {
+      console.error(err);      
       throw throwError('Error procesando la imagen', 500);
     }
   } else {
