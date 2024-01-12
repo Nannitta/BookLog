@@ -1,12 +1,13 @@
-import express, { Request, Response } from "express";
-import "dotenv/config";
+import express, { Request, Response } from 'express';
+import 'dotenv/config';
 import { CustomError } from './helpers/errorHandler';
 import booksRouter from './routes/booksRouter';
 
-const { PORT } = process.env || 3000;
+const { PORT } = process.env;
 
 const app = express();
 app.use(express.json());
+app.use(express.urlencoded({ extended: false, limit: '10mb' }));
 
 app.use('/', booksRouter);
 
@@ -22,10 +23,10 @@ app.use((err: CustomError, _:Request, res: Response) => {
 
 app.use((_: Request, res: Response) => {
   res.status(404).send({
-    message: "No encontrado",
+    message: 'No encontrado',
   });
 });
 
-app.listen(PORT, () => {
+app.listen(PORT || 3000, () => {
   console.log(`Server listening at http://localhost:${PORT}`);
 });

@@ -1,4 +1,4 @@
-import express, { Router } from "express";
+import express, { Router } from 'express';
 import getAllBooks from '../controllers/books/getAllBooks';
 import getBook from '../controllers/books/getBook';
 import addBook from '../controllers/books/addBook';
