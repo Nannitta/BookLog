@@ -8,8 +8,8 @@ import deleteBook from '../controllers/books/deleteBook';
 
 const booksRouter: Router = express.Router();
 
-const storage = multer.memoryStorage();
-const upload = multer({ storage: storage });
+const storage: multer.StorageEngine = multer.memoryStorage();
+const upload: multer.Multer = multer({ storage: storage });
 
 booksRouter.get('/', getAllBooks);
 booksRouter.get('/:idBook', getBook);
