@@ -20,7 +20,7 @@ const savePhoto = async (photo) => {
     }
 
     try {   
-      const img = sharp(photo.buffer);         
+      const img: sharp.Sharp = sharp(photo.buffer);         
       
       const imgName: string = randomstring.generate(15) + path.extname(photo.originalname);
       
