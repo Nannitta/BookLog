@@ -12,7 +12,7 @@ const addBook = async (req: Request, res: Response, next: NextFunction) => {
       throw throwError('Ya existe un libro con ese título', 400);
     }
         
-    const createdAt = new Date();
+    const createdAt: Date = new Date();
 
     if (!title || !author || !yearRelease || !editorial || !resume) {
       throw throwError('Debes rellenar todos los campos', 400);
