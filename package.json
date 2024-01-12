@@ -1,0 +1,24 @@
+{
+  "name": "find-books",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.ts",
+  "scripts": {
+    "dev": "nodemon ./src/server.ts"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "16.3.1",
+    "express": "4.18.2",
+    "firebase-admin": "^12.0.0",
+    "ts-node": "10.9.2"
+  },
+  "devDependencies": {
+    "@tsconfig/node-lts-strictest-esm": "18.12.1",
+    "@types/express": "4.17.18",
+    "@types/node": "20.8.10",
+    "nodemon": "3.0.2",
+    "typescript": "5.3.3"
+  }
+}
