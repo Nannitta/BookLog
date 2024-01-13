@@ -2,10 +2,12 @@ import express, { Request, Response } from 'express';
 import 'dotenv/config';
 import { CustomError } from './helpers/errorHandler';
 import booksRouter from './routes/booksRouter';
+import cors from 'cors';
 
 const { PORT } = process.env;
 
 const app = express();
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false, limit: '10mb' }));
 app.use('/uploads', express.static('uploads'));
