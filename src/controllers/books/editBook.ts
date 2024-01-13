@@ -3,6 +3,7 @@ import db from '../../db/initDbFirebase';
 import { throwError } from '../../helpers/errorHandler';
 import deletePhoto from '../../helpers/deletePhoto';
 import savePhoto from '../../helpers/savePhoto';
+import editBookSchema from '../../schemas/editBookSchema';
 
 const editBook = async (req: Request, res: Response, next: NextFunction) => {
   try {
@@ -10,6 +11,12 @@ const editBook = async (req: Request, res: Response, next: NextFunction) => {
     const { title, author, yearRelease, editorial, resume } = req.body;
     const cover: Express.Multer.File | undefined = req.file;
     let newCover: string = '';
+
+    const { error } = editBookSchema.validate({ title, author, yearRelease, editorial, resume });
+
+    if (error) {
+      throw throwError(error.message, 400);
+    }
     
     const checkedBook = await db.collection('books').where('__name__', '==', idBook).get();
     

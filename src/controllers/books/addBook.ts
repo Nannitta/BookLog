@@ -2,12 +2,19 @@ import { NextFunction, Request, Response } from 'express';
 import db from '../../db/initDbFirebase';
 import { throwError } from '../../helpers/errorHandler';
 import savePhoto from '../../helpers/savePhoto';
+import addBookSchema from '../../schemas/addBookSchema';
 
 const addBook = async (req: Request, res: Response, next: NextFunction) => {
   try {
 
     const { title, author, yearRelease, editorial, resume } = req.body;
     const coverFile = req.file;
+
+    const { error } = addBookSchema.validate({ title, author, yearRelease, editorial, resume });
+
+    if (error) {
+      throw throwError(error.message, 400);
+    }
          
     const checkBook = await db.collection('books').where('title', '==', title).get();
   
