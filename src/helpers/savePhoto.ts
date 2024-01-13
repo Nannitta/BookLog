@@ -27,7 +27,7 @@ const savePhoto = async (photo) => {
       const imgPath: string = path.join(uploadsPath, imgName);        
 
       await img.toFile(imgPath);
-
+      
       return imgName;
     } catch (err) {
       console.error(err);      

@@ -15,7 +15,7 @@ app.use('/', booksRouter);
 
 app.use((err: CustomError, _:Request, res: Response) => {
   console.error(err);
-
+  
   const errorCode: number = err.statusCode ?? 500;
 
   res.status(errorCode).send({
