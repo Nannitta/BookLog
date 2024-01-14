@@ -7,3 +7,12 @@ export const getAllBooks = async () => {
 
   return allBooks;  
 };
+
+
+export const getBook = async (idBook: string) => { 
+  const data = await fetch(`${BACK_API}/${idBook}`);
+
+  const book = await data.json();
+
+  return book;
+};

@@ -24,7 +24,7 @@
   "rules": {
     "react/jsx-filename-extension": [1, { "extensions": [".ts", ".tsx", ".js", ".jsx"] }],
     "no-use-before-define": ["error", { "variables": false }],
-    "react/prop-types": ["error", { "ignore": ["navigation", "navigation.navigate"] }],
+    "react/prop-types": "off",
     "semi": ["error", "always"],
     "quotes": ["error", "single"],
     "indent": ["error", 2],

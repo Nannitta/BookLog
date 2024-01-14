@@ -3,6 +3,7 @@ export interface Book {
   title: string;
   author: string;
   editorial: string;
+  yearRelease: string;
   cover: string;
   resume: string;
   createdAt: Date;
