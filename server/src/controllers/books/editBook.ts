@@ -11,6 +11,7 @@ const editBook = async (req: Request, res: Response, next: NextFunction) => {
     const { title, author, yearRelease, editorial, resume } = req.body;
     const cover: Express.Multer.File | undefined = req.file;
     let newCover: string = '';
+    const modifiedAt: Date = new Date();
 
     const { error } = editBookSchema.validate({ title, author, yearRelease, editorial, resume });
 
@@ -43,6 +44,7 @@ const editBook = async (req: Request, res: Response, next: NextFunction) => {
       resume: resume || checkedBook.docs[0]?.data()['resume'],
       cover: newCover || checkedBook.docs[0]?.data()['cover'],
       yearRelease: yearRelease || checkedBook.docs[0]?.data()['yearRelease'],
+      modifiedAt: modifiedAt
     };
 
     if(idBook) {
