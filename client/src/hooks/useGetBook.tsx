@@ -1,17 +1,17 @@
 import { useEffect, useState } from 'react';
 import { Book } from '../types/book.type';
-import { getAllBooks } from '../services/Books';
+import { getBook } from '../services/Books';
 
-const useAllBooks = () => {
-  const [books, setBooks] = useState<Book[]>([]);
+const useGetBook = (idBook: string) => {
+  const [book, setBook] = useState<Book>();
   const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
-    const loadAllBooks = async () => {
+    const loadBook = async () => {
       try {
         setLoading(true);
-        const data = await getAllBooks();
-        setBooks(data);
+        const data = await getBook(idBook);
+        setBook(data);
       } catch (error) {
         console.error(error);
       } finally {
@@ -19,9 +19,9 @@ const useAllBooks = () => {
       }
     };
 
-    loadAllBooks();
+    loadBook();
   }, []);
-  return { books, loading };
+  return { book, loading };
 };
 
-export default useAllBooks;
+export default useGetBook;

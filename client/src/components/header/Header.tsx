@@ -1,5 +1,13 @@
-import { View, Image, StyleSheet, Pressable } from 'react-native';
+import { View, Image, StyleSheet } from 'react-native';
 import Constants from 'expo-constants';
+
+const Header = () => {
+  return (
+    <View style={styles.container}>
+      <Image style={styles.logo} source={require('../../../assets/splash.png')}/>
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -12,15 +20,5 @@ const styles = StyleSheet.create({
     height: 60,
   }
 });
-
-const Header = () => {
-  return (
-    <View style={styles.container}>
-      <Pressable>
-        <Image style={styles.logo} source={require('../../../assets/splash.png')}/>
-      </Pressable>
-    </View>
-  );
-};
 
 export default Header;
