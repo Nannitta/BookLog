@@ -1,19 +1,7 @@
 import useGetBook from '../../hooks/useGetBook';
 import { Text, SafeAreaView, Image, StyleSheet, ScrollView, Pressable } from 'react-native';
 import { BACK_API } from '@env';
-import { RouteProp, NavigationProp } from '@react-navigation/native';
-
-type RootStackParamList = {
-  Libro: { idBook: string},
-  Editar: { idBook: string}
-};
-
-type CardBookRouteProp = RouteProp<RootStackParamList, 'Libro'>;
-
-type CardBookProps = {
-  route: CardBookRouteProp;
-  navigation: NavigationProp<RootStackParamList>
-};
+import { CardBookProps } from '../../types/cardBook.type';
 
 const CardBook: React.FC<CardBookProps> = ({ route, navigation }) => {
   const idBook = route.params.idBook; 

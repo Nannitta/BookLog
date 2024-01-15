@@ -1,15 +1,7 @@
 import { View, Text, Image, StyleSheet, FlatList, SafeAreaView, Pressable } from 'react-native';
 import useAllBooks from '../../hooks/useAllBooks';
 import { BACK_API } from '@env';
-import { NavigationProp } from '@react-navigation/native';
-
-type RootStackParamList = {
-  Libro: { idBook: string | undefined}
-};
-
-type ListBooksProps = {
-  navigation: NavigationProp<RootStackParamList>;
-};
+import { ListBooksProps } from '../../types/listBooks.type';
 
 const ListBooks: React.FC<ListBooksProps> = ({ navigation }) => {
   const { books, loading } = useAllBooks();
@@ -18,7 +10,7 @@ const ListBooks: React.FC<ListBooksProps> = ({ navigation }) => {
    
   return (
     <SafeAreaView style={styles.safeArea}>
-      <Pressable style={styles.addBook}><Text><Image source={require('../../../assets/book.png')}/>Añadir libro</Text></Pressable>
+      <Pressable style={styles.addBook} onPress={() => navigation.navigate('Añadir')}><Text><Image source={require('../../../assets/book.png')}/>Añadir libro</Text></Pressable>
       <FlatList
         data={books}
         renderItem={({ item: book }) => (
