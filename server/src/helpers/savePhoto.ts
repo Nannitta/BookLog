@@ -6,7 +6,7 @@ import { promises as fs } from 'fs';
 import { throwError } from './errorHandler';
 
 
-const savePhoto = async (photo) => {
+const savePhoto = async (photo: any) => {
   const { UPLOADS_DIR } = process.env;
   let uploadsPath: string;
 

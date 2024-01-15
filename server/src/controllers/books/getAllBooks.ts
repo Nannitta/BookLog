@@ -1,9 +1,9 @@
-import { NextFunction, Response } from 'express';
+import { NextFunction, Response, Request } from 'express';
 import { Book } from '../../types/book.type';
 import db from '../../db/initDbFirebase';
 import { throwError } from '../../helpers/errorHandler';
 
-const getAllBooks = async (_, res: Response, next: NextFunction) => {
+const getAllBooks = async (_: Request, res: Response, next: NextFunction) => {
   try {
     const data = await db.collection('books').get();
  

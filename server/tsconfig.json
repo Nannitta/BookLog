@@ -21,7 +21,7 @@
     "verbatimModuleSyntax": false,
     "allowImportingTsExtensions": true,
     "noEmit": true,
-    "noImplicitAny": false
+    "noImplicitAny": true
   },
   "ts-node": {
     "esm": true
