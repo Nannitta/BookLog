@@ -46,7 +46,40 @@ export const editBook = async (idBook: string, refreshBook: Book, cover: any) =>
       },
       body: editBookForm
     });   
-  } catch (error) {
-    console.log(error);
+  } catch (err) {
+    console.error(err);
   }  
-}; 
+};
+
+export const addBook = async (addedBook: Book, cover: any) => {
+  const addedBookForm = new FormData();
+  addedBookForm.append('cover', cover);
+  if(addedBook.title) {
+    addedBookForm.append('title', addedBook.title);
+  }
+  if(addedBook.author) {
+    addedBookForm.append('author', addedBook.author);
+  }
+  if(addedBook.editorial) {
+    addedBookForm.append('editorial', addedBook.editorial);
+  }
+  if(addedBook.yearRelease) {
+    addedBookForm.append('yearRelease', addedBook.yearRelease);
+  }
+  if(addedBook.resume) {
+    addedBookForm.append('resume', addedBook.resume);
+  }
+
+  try {
+    await fetch(`${BACK_API}/addBook`, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'multipart/form-data',
+      },
+      body: addedBookForm
+    });
+  } catch (err) {
+    console.error(err);
+  }
+};

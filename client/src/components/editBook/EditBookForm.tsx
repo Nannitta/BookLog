@@ -2,26 +2,8 @@ import { useState } from 'react';
 import { TextInput, View, Pressable, Text, Alert, Image } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import { editBook } from '../../services/Books';
-import { RouteProp, NavigationProp } from '@react-navigation/native';
+import { CoverState, EditBookProps } from '../../types/editBook.type';
 import { Book } from '../../types/book.type';
-
-interface CoverState {
-  uri: string;
-  type: string;
-  name: string;
-  data: Blob;
-}
-
-type RootStackParamList = {
-  Libro: { idBook: string}
-};
-
-type EditBookRouteProp = RouteProp<RootStackParamList, 'Libro'>;
-
-type EditBookProps = {
-  route: EditBookRouteProp;
-  navigation: NavigationProp<RootStackParamList>
-};
 
 const EditBookForm: React.FC<EditBookProps> = ({ navigation, route}) => {
   const { idBook } = route.params;
@@ -66,6 +48,7 @@ const EditBookForm: React.FC<EditBookProps> = ({ navigation, route}) => {
 
     try {
       await editBook(idBook, refreshBook, cover);
+      navigation.navigate('Libro', {idBook: idBook});
     } catch (err) {      
       console.error(err);
     }
