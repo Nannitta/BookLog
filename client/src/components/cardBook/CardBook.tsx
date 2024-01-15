@@ -1,19 +1,21 @@
 import useGetBook from '../../hooks/useGetBook';
-import { Text, SafeAreaView, Image, StyleSheet, ScrollView } from 'react-native';
+import { Text, SafeAreaView, Image, StyleSheet, ScrollView, Pressable } from 'react-native';
 import { BACK_API } from '@env';
-import { RouteProp } from '@react-navigation/native';
+import { RouteProp, NavigationProp } from '@react-navigation/native';
 
 type RootStackParamList = {
-  Libro: { idBook: string}
+  Libro: { idBook: string},
+  Editar: { idBook: string}
 };
 
 type CardBookRouteProp = RouteProp<RootStackParamList, 'Libro'>;
 
 type CardBookProps = {
   route: CardBookRouteProp;
+  navigation: NavigationProp<RootStackParamList>
 };
 
-const CardBook: React.FC<CardBookProps> = ({ route }) => {
+const CardBook: React.FC<CardBookProps> = ({ route, navigation }) => {
   const idBook = route.params.idBook; 
   const { book, loading } = useGetBook(idBook);
   if (loading) return <Text>Cargando...</Text>;
@@ -23,6 +25,9 @@ const CardBook: React.FC<CardBookProps> = ({ route }) => {
       {
         book
           ? <ScrollView style={styles.scroll}>
+            <Pressable onPress={() => navigation.navigate('Editar', { idBook: idBook })}>
+              <Image source={require('../../../assets/edit.png')} style={styles.icon}/>
+            </Pressable>
             <Image source={{ uri: `${BACK_API}/uploads/${book.cover}`}} style={styles.cover}/>
             <Text>{book.title}</Text>
             <Text>{book.author}</Text>
@@ -47,6 +52,10 @@ const styles = StyleSheet.create({
   cover: {
     width: 240,
     height: 320
+  },
+  icon: {
+    width: 24,
+    height: 24
   }
 });
 

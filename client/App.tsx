@@ -2,10 +2,18 @@ import Header from './src/components/header/Header';
 import ListBooks from './src/components/listBooks/listBooks';
 import Footer from './src/components/footer/Footer';
 import CardBook from './src/components/cardBook/CardBook';
-import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import EditBookForm from './src/components/editBook/EditBookForm';
+import { Book } from './src/types/book.type';
 
-const Stack = createNativeStackNavigator();
+type RootStackParamList = {
+  Libro: { idBook: string},
+  Editar: { idBook: string},
+  'Mis libros': Book[]
+};
+
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export default function App() {
   return (
@@ -15,6 +23,7 @@ export default function App() {
         <Stack.Navigator>
           <Stack.Screen name='Mis libros' component={ListBooks}/>
           <Stack.Screen name='Libro' component={CardBook}/>
+          <Stack.Screen name='Editar' component={EditBookForm}/>
         </Stack.Navigator>
       </NavigationContainer>
       <Footer/>

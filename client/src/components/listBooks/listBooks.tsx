@@ -4,7 +4,7 @@ import { BACK_API } from '@env';
 import { NavigationProp } from '@react-navigation/native';
 
 type RootStackParamList = {
-  Libro: { idBook: string}
+  Libro: { idBook: string | undefined}
 };
 
 type ListBooksProps = {
