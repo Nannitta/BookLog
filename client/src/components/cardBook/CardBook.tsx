@@ -2,11 +2,17 @@ import useGetBook from '../../hooks/useGetBook';
 import { Text, SafeAreaView, Image, StyleSheet, ScrollView, Pressable } from 'react-native';
 import { BACK_API } from '@env';
 import { CardBookProps } from '../../types/cardBook.type';
+import { deleteBookService } from '../../services/Books';
 
 const CardBook: React.FC<CardBookProps> = ({ route, navigation }) => {
   const idBook = route.params.idBook; 
   const { book, loading } = useGetBook(idBook);
   if (loading) return <Text>Cargando...</Text>;
+
+  const deleteBook = async () => {
+    await deleteBookService(idBook);
+    navigation.navigate('Mis libros');
+  };
 
   return (
     <SafeAreaView style={styles.main}>
@@ -23,6 +29,7 @@ const CardBook: React.FC<CardBookProps> = ({ route, navigation }) => {
             <Text>{book.editorial}</Text>
             <Text>Sinópsis</Text>
             <Text>{book.resume}</Text>
+            <Pressable onPress={() => deleteBook()}><Text><Image source={require('../../../assets/delete.png')}/>Eliminar libro</Text></Pressable>
           </ScrollView> 
           : null
       }
