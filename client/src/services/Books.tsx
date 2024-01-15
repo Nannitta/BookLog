@@ -83,3 +83,9 @@ export const addBook = async (addedBook: Book, cover: any) => {
     console.error(err);
   }
 };
+
+export const deleteBookService = async (idBook: string) => {  
+  await fetch(`${BACK_API}/${idBook}`, {
+    method: 'DELETE'
+  });
+};
