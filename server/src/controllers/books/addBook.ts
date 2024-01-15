@@ -6,7 +6,6 @@ import addBookSchema from '../../schemas/addBookSchema';
 
 const addBook = async (req: Request, res: Response, next: NextFunction) => {
   try {
-
     const { title, author, yearRelease, editorial, resume } = req.body;
     const coverFile = req.file;
 
