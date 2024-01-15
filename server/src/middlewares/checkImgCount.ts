@@ -5,7 +5,7 @@ import { throwError } from '../helpers/errorHandler';
 const checkImageCount = (req: Request, res: Response, next: NextFunction) => {
   const upload = multer().single('cover');
   upload(req, res, function(err) {
-    try {
+    try {     
       if (err instanceof multer.MulterError) {
         throw throwError('No puedes subir más de un archivo', 400);
       } else if (err) {

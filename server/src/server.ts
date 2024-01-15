@@ -15,11 +15,8 @@ app.use(express.urlencoded({ extended: false, limit: '10mb' }));
 
 app.use('/', booksRouter);
 
-app.use((err: CustomError, _:Request, res: Response) => {
-  console.error(err);
-  
+app.use((err: CustomError, _: Request, res: Response) => { 
   const errorCode: number = err.statusCode ?? 500;
-
   res.status(errorCode).send({
     error: err.message
   });
