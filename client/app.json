@@ -8,7 +8,20 @@
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#ffffff",
+      "plugins": [
+        [
+          "expo-font",
+          {
+            "fonts": [
+              "./assets/fonts/Oswald-SemiBold.ttf",
+              "./assets/fonts/Roboto-Bold.ttf",
+              "./assets/fonts/Roboto-Regular.ttf",
+              "./assets/fonts/Roboto-Light.ttf"
+            ]
+          }
+        ]
+      ]
     },
     "assetBundlePatterns": [
       "**/*"

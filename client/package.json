@@ -9,6 +9,8 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@expo-google-fonts/oswald": "^0.2.3",
+    "@expo-google-fonts/roboto": "^0.2.3",
     "@react-navigation/native": "6.1.9",
     "@react-navigation/native-stack": "6.9.17",
     "expo": "~49.0.15",
@@ -26,10 +28,11 @@
     "react-native-screens": "~3.22.0",
     "react-native-web": "~0.19.6",
     "react-router-dom": "6.21.2",
-    "react-router-native": "6.21.2"
+    "react-router-native": "6.21.2",
+    "expo-splash-screen": "~0.20.5"
   },
   "devDependencies": {
-    "@babel/core": "7.20.0",
+    "@babel/core": "^7.23.7",
     "@expo/webpack-config": "19.0.0",
     "@types/react": "~18.2.14",
     "@types/react-native": "0.73.0",
