@@ -13,7 +13,8 @@ const styles = StyleSheet.create({
   container: {
     marginTop: Constants.statusBarHeight,
     paddingTop: 20,
-    alignItems: 'center'
+    alignItems: 'center',
+    backgroundColor: '#F2EFE6'
   },
   logo: {
     width: 150,
