@@ -1,5 +1,5 @@
 import useGetBook from '../../hooks/useGetBook';
-import { Text, SafeAreaView, Image, StyleSheet, ScrollView, Pressable, RefreshControl, View } from 'react-native';
+import { Text, SafeAreaView, Image, StyleSheet, ScrollView, Pressable, RefreshControl, View, Alert } from 'react-native';
 import { BACK_API } from '@env';
 import { CardBookProps } from '../../types/cardBook.type';
 import { deleteBookService } from '../../services/Books';
@@ -27,6 +27,7 @@ const CardBook: React.FC<CardBookProps> = ({ route, navigation }) => {
 
   const deleteBook = async () => {
     await deleteBookService(idBook);
+    Alert.alert('Libro eliminado correctamente');
     navigation.navigate('Mis libros');
   };
 
