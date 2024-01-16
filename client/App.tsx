@@ -22,7 +22,7 @@ export default function App() {
     <>
       <Header/>
       <NavigationContainer>
-        <Stack.Navigator >
+        <Stack.Navigator screenOptions={{headerStyle: { backgroundColor: '#F2EFE6'}, headerTintColor: '#001A70'}}>
           <Stack.Screen name='Mis libros' component={ListBooks}/>
           <Stack.Screen name='Libro' component={CardBook}/>
           <Stack.Screen name='Editar' component={EditBookForm}/>
