@@ -6,22 +6,27 @@ const useGetBook = (idBook: string) => {
   const [book, setBook] = useState<Book>();
   const [loading, setLoading] = useState<boolean>(false);
 
-  useEffect(() => {
-    const loadBook = async () => {
-      try {
-        setLoading(true);
-        const data = await getBook(idBook);
-        setBook(data);
-      } catch (error) {
-        console.error(error);
-      } finally {
-        setLoading(false);
-      }
-    };
+  const loadBook = async () => {
+    try {
+      setLoading(true);
+      const data = await getBook(idBook);
+      setBook(data);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
+  useEffect(() => {
     loadBook();
   }, []);
-  return { book, loading };
+
+  const refetchUseGetBook = () => {
+    loadBook();
+  };
+
+  return { book, loading, refetchUseGetBook };
 };
 
 export default useGetBook;

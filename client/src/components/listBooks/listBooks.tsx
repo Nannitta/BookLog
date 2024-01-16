@@ -1,10 +1,18 @@
-import { View, Text, Image, StyleSheet, FlatList, SafeAreaView, Pressable } from 'react-native';
+import { View, Text, Image, StyleSheet, FlatList, SafeAreaView, Pressable, RefreshControl } from 'react-native';
 import useAllBooks from '../../hooks/useAllBooks';
 import { BACK_API } from '@env';
 import { ListBooksProps } from '../../types/listBooks.type';
+import { useCallback, useState } from 'react';
 
 const ListBooks: React.FC<ListBooksProps> = ({ navigation }) => {
-  const { books, loading } = useAllBooks();
+  const { books, loading, refetchUseGetAllBooks } = useAllBooks();
+  const [refresh, setRefresh] = useState<boolean>(false);
+
+  const onRefresh = useCallback(async () => {
+    setRefresh(true);
+    await refetchUseGetAllBooks();
+    setRefresh(false);
+  }, [refetchUseGetAllBooks]);
 
   if (loading) return <Text>Cargando...</Text>;
    
@@ -22,6 +30,7 @@ const ListBooks: React.FC<ListBooksProps> = ({ navigation }) => {
             <Text>{book.title}</Text>
           </View>
         )}
+        refreshControl={<RefreshControl refreshing={refresh} onRefresh={onRefresh} />}
       />
     </SafeAreaView>
   );
