@@ -8,7 +8,8 @@ export interface CoverState {
 }
 
 type RootStackParamList = {
-  Libro: { idBook: string}
+  Libro: { idBook: string }
+  Editar: { idBook: string }
 };
 
 type EditBookRouteProp = RouteProp<RootStackParamList, 'Libro'>;

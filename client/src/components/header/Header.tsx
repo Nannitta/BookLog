@@ -4,7 +4,7 @@ import Constants from 'expo-constants';
 const Header = () => {
   return (
     <View style={styles.container}>
-      <Image style={styles.logo} source={require('../../../assets/splash.png')}/>
+      <Image style={styles.logo} source={require('../../../assets/logo.png')}/>
     </View>
   );
 };
