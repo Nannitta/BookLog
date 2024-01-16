@@ -2,7 +2,7 @@ import { addBook } from '../../services/Books';
 import { useState } from 'react';
 import { CoverState } from '../../types/editBook.type';
 import * as ImagePicker from 'expo-image-picker';
-import { TextInput, SafeAreaView, Pressable, Text, Alert, ScrollView, View, StyleSheet } from 'react-native';
+import { TextInput, Pressable, Text, Alert, View, StyleSheet } from 'react-native';
 import { Book } from '../../types/book.type';
 import { AddBookFormProps } from '../../types/addBook.type';
 import { useFonts } from 'expo-font';
@@ -63,69 +63,67 @@ const AddBookForm: React.FC<AddBookFormProps> = ({ navigation }) => {
 
   if (fontsLoaded) {
     return (
-      <SafeAreaView style={styles.main}>
-        <ScrollView>
-          <View style={styles.flexRow}>
-            <TextInput
-              placeholder='Título'
-              onChangeText={setTitle}
-              value={title}
-              style={styles.inputText}
-            />
-            <TextInput
-              placeholder='Autor'
-              onChangeText={setAuthor}
-              value={author}
-              style={styles.inputText}   
-            />
-          </View>
-          <View style={styles.flexRow}>
-            <TextInput
-              placeholder='Editorial'
-              onChangeText={setEditorial}
-              value={editorial}
-              style={styles.inputText}
-            />
-            <TextInput
-              placeholder='Año de publicación'
-              onChangeText={setYearRelease}
-              value={yearRelease}
-              maxLength={4}
-              keyboardType='phone-pad'
-              style={styles.inputText}
-            />
-          </View>
+      <View style={styles.main}>
+        <View style={styles.flexRow}>
           <TextInput
-            placeholder='Sinópsis'
-            onChangeText={setResume}
-            multiline
-            numberOfLines={5}
-            value={resume}
-            style={styles.borderInput}
+            placeholder='Título'
+            onChangeText={setTitle}
+            value={title}
+            style={styles.inputText}
           />
-          <View> 
-            <Pressable 
-              onPress={uploadCover}> 
-              <Text style={styles.borderInput}> 
+          <TextInput
+            placeholder='Autor'
+            onChangeText={setAuthor}
+            value={author}
+            style={styles.inputText}   
+          />
+        </View>
+        <View style={styles.flexRow}>
+          <TextInput
+            placeholder='Editorial'
+            onChangeText={setEditorial}
+            value={editorial}
+            style={styles.inputText}
+          />
+          <TextInput
+            placeholder='Año de publicación'
+            onChangeText={setYearRelease}
+            value={yearRelease}
+            maxLength={4}
+            keyboardType='phone-pad'
+            style={styles.inputText}
+          />
+        </View>
+        <TextInput
+          placeholder='Sinópsis'
+          onChangeText={setResume}
+          multiline
+          numberOfLines={5}
+          value={resume}
+          style={styles.borderInput}
+        />
+        <View> 
+          <Pressable 
+            onPress={uploadCover}> 
+            <Text style={styles.borderInput}> 
               Selecciona una imágen
-              </Text> 
-            </Pressable> 
-            {cover ? ( 
-              <Text style={styles.imgSelected}> 
+            </Text> 
+          </Pressable> 
+          {cover ? ( 
+            <Text style={styles.imgSelected}> 
                 Imágen seleccionada: <Text>{cover.uri.split('/')[11]}</Text>
-              </Text> 
-            ) : null} 
-          </View>
-          <View style={styles.buttonsContainer}>
-            <Pressable onPress={submitChanges} style={styles.addBook}>
-              <Text style={styles.addText}>Añadir libro</Text>
-            </Pressable>
-            <Pressable onPress={() => navigation.navigate('Mis libros', '/')} style={styles.cancel}>
-              <Text style={styles.cancelText}>Cancelar</Text>
-            </Pressable>
-          </View> 
-        </ScrollView>
-      </SafeAreaView>
+            </Text> 
+          ) : null} 
+        </View>
+        <View style={styles.buttonsContainer}>
+          <Pressable onPress={submitChanges} style={styles.addBook}>
+            <Text style={styles.addText}>Añadir libro</Text>
+          </Pressable>
+          <Pressable onPress={() => navigation.navigate('Mis libros', '/')} style={styles.cancel}>
+            <Text style={styles.cancelText}>Cancelar</Text>
+          </Pressable>
+        </View> 
+      </View>
     );
   }
 };
