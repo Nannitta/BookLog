@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { TextInput, View, Pressable, Text, Alert, StyleSheet } from 'react-native';
+import { TextInput, View, Pressable, Text, Alert, StyleSheet, ScrollView } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import { editBook } from '../../services/Books';
 import { CoverState, EditBookProps } from '../../types/editBook.type';
@@ -56,7 +56,7 @@ const EditBookForm: React.FC<EditBookProps> = ({ navigation, route}) => {
   };
 
   return (
-    <View style={styles.main}>
+    <ScrollView style={styles.main}>
       <View style={styles.flexRow}>
         <TextInput
           placeholder='Título'
@@ -114,7 +114,7 @@ const EditBookForm: React.FC<EditBookProps> = ({ navigation, route}) => {
           <Text style={styles.cancelText}>Cancelar</Text>
         </Pressable> 
       </View> 
-    </View>
+    </ScrollView>
   );
 };
 
@@ -142,7 +142,8 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     marginVertical: 20,
     paddingLeft: 20,
-    paddingVertical: 8
+    paddingVertical: 8,
+    overflow: 'scroll'
   },
   imgSelected: {
     height: 100
@@ -150,7 +151,8 @@ const styles = StyleSheet.create({
   buttonsContainer: {
     flexDirection: 'row',
     gap: 30,
-    justifyContent: 'space-around'
+    justifyContent: 'space-around',
+    marginBottom: 60
   },
   editBook: {
     backgroundColor: '#00CC7C',

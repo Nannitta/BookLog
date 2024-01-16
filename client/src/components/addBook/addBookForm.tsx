@@ -2,7 +2,7 @@ import { addBook } from '../../services/Books';
 import { useState } from 'react';
 import { CoverState } from '../../types/editBook.type';
 import * as ImagePicker from 'expo-image-picker';
-import { TextInput, Pressable, Text, Alert, View, StyleSheet } from 'react-native';
+import { TextInput, Pressable, Text, Alert, View, StyleSheet, ScrollView } from 'react-native';
 import { Book } from '../../types/book.type';
 import { AddBookFormProps } from '../../types/addBook.type';
 import { useFonts } from 'expo-font';
@@ -63,7 +63,7 @@ const AddBookForm: React.FC<AddBookFormProps> = ({ navigation }) => {
 
   if (fontsLoaded) {
     return (
-      <View style={styles.main}>
+      <ScrollView style={styles.main}>
         <View style={styles.flexRow}>
           <TextInput
             placeholder='Título'
@@ -123,7 +123,7 @@ const AddBookForm: React.FC<AddBookFormProps> = ({ navigation }) => {
             <Text style={styles.cancelText}>Cancelar</Text>
           </Pressable>
         </View> 
-      </View>
+      </ScrollView>
     );
   }
 };
@@ -152,7 +152,8 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     marginVertical: 20,
     paddingLeft: 20,
-    paddingVertical: 8
+    paddingVertical: 8,
+    overflow: 'scroll'
   },
   portraitText: {
     color: '#616161',
@@ -164,7 +165,8 @@ const styles = StyleSheet.create({
   buttonsContainer: {
     flexDirection: 'row',
     gap: 30,
-    justifyContent: 'space-around'
+    justifyContent: 'space-around',
+    marginBottom: 60
   },
   addBook: {
     backgroundColor: '#00CC7C',
